@@ -11,7 +11,7 @@ def load_data(file_path):
     df = pd.read_csv(file_path)
 
     # Filtra o DataFrame para manter apenas as linhas onde Suspeito=0
-    filtered_df = df[df['Suspeito'] == 0]
+    filtered_df = df[df['Suspeito'] == 1]
 
     return filtered_df
 
@@ -41,10 +41,9 @@ if not df.empty:
     folium.LayerControl().add_to(m)  # Permite ao usuário escolher entre os estilos de mapa
 
     # Adicionando marcadores com popup
-    # Adicionando marcadores com popup
     for idx, row in df.iterrows():
-        icon_color = 'green' if row['status'] else 'blue'
+        icon_color = 'green' if  row['status'] else 'red'
         folium.Marker(location=[row['LAT'], row['LON']], popup=f"ID: {row['id_campo']}",
                       icon=folium.Icon(color=icon_color)).add_to(m)
 
-folium_static(m)
+    folium_static(m)
