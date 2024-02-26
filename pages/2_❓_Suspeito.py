@@ -18,7 +18,8 @@ def load_data(file_path):
 st.subheader(" Pontos suspeitos")
 file_path = 'pages/piscinas.csv'
 df = load_data(file_path)
-
+numero=len(df)
+st.write(f"{numero} pontos")
 if not df.empty:
     # Inicia o mapa
     m = folium.Map(location=[df['LAT'].mean(), df['LON'].mean()], zoom_start=16)
