@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from streamlit_folium import folium_static
 import folium
-
+import leafmap.foliumap as leafmap
 
 st.set_page_config(page_title="Combate a Arbovirose")
 
@@ -38,6 +38,14 @@ with st.container():
     file_path = 'pages/piscinas.csv'
     # Carrega os dados
     original_df = load_data(file_path)
+    numero = len( original_df)
+
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.write(f"{numero} pontos")
+    with col3:
+        st.write("PMAC")
+
 
     # Inicia o mapa centrado nas médias das coordenadas
     m = folium.Map(location=[original_df['LAT'].mean(), original_df['LON'].mean()], zoom_start=18)
@@ -65,3 +73,22 @@ with st.container():
 
     # Exibe o mapa no Streamlit
     folium_static(m)
+
+####################################
+# Inicializando um mapa base
+#m = leafmap.Map()
+# latitude_central = original_df['LAT'].mean()
+# longitude_central = original_df['LON'].mean()
+# m2=leafmap.Map(location=[latitude_central, longitude_central], zoom_start=13)
+#
+# m2.add_basemap("Stamen Toner")
+# # Adicionando o mapa de calor ao mapa base
+# # Assuma que 'latitude' e 'longitude' são as colunas do seu DataFrame 'dt' contendo as coordenadas
+#
+#
+# # Usando o Streamlit para exibir o mapa
+# # Primeiro, o mapa é salvo como um arquivo HTML temporário
+# map_html = m2.to_html()
+#
+# # Então, o Streamlit usa o método 'st.components.v1.html' para exibir o HTML
+# st.components.v1.html(map_html, height=500, scrolling=True)
