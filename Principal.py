@@ -48,7 +48,8 @@ with st.container():
 
 
     # Inicia o mapa centrado nas médias das coordenadas
-    m = folium.Map(location=[original_df['LAT'].mean(), original_df['LON'].mean()], zoom_start=18)
+    #m = folium.Map(location=[original_df['LAT'].mean(), original_df['LON'].mean()], zoom_start=18)
+    m = folium.Map(location=[-22.973356, -42.025602], zoom_start=16)
 
     # Adicionando camadas de mapa
     folium.TileLayer('OpenStreetMap').add_to(m)
@@ -67,7 +68,7 @@ with st.container():
 
         folium.Marker(
             location=[row['LAT'], row['LON']],
-            popup=f"ID: {row['id_campo']} - Status: {'Verificado' if row['status'] else 'Não Verificado'} - Suspeito: {'Sim' if row['Suspeito'] == 1 else 'Não'}",
+            popup=f"ID: {row['id_campo']} - Status: {'Verificado' if row['status'] else 'Não Verificado'} - Suspeito: {'Sim' if row['Suspeito'] == 1 else 'Não'}",tooltip=f"ID: {row['id_campo']}",
             icon=folium.Icon(color=icon_color)
         ).add_to(m)
 
