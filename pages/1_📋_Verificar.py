@@ -23,7 +23,8 @@ numero=len(df)
 st.write(f"{numero} pontos")
 if not df.empty:
     # Inicia o mapa
-    m = folium.Map(location=[df['LAT'].mean(), df['LON'].mean()], zoom_start=16)
+    #m = folium.Map(location=[df['LAT'].mean(), df['LON'].mean()], zoom_start=16)
+    m = folium.Map(location=[ -22.973356,-42.025602], zoom_start=16)
 
     # Adicionando um tileset padrão e alternativos
     folium.TileLayer('OpenStreetMap').add_to(m)
@@ -45,7 +46,7 @@ if not df.empty:
     # Adicionando marcadores com popup
     for idx, row in df.iterrows():
         icon_color = 'green' if row['status'] else 'blue'
-        folium.Marker(location=[row['LAT'], row['LON']], popup=f"ID: {row['id_campo']}",
+        folium.Marker(location=[row['LAT'], row['LON']], popup=f"ID: {row['id_campo']}",stream=f"ID: {row['id_campo']}",
                       icon=folium.Icon(color=icon_color)).add_to(m)
     with st.container():
         # Opção para salvar o DataFrame atualizado de volta para um arquivo CSV

@@ -23,7 +23,7 @@ numero=len(df)
 st.write(f"{numero} pontos")
 if not df.empty:
     # Inicia o mapa
-    m = folium.Map(location=[df['LAT'].mean(), df['LON'].mean()], zoom_start=16)
+    m = folium.Map(location=[ -22.973356,-42.025602], zoom_start=16)
 
     # Adicionando um tileset padrão e alternativos
     folium.TileLayer('OpenStreetMap').add_to(m)
@@ -52,7 +52,7 @@ if not df.empty:
         iframe = folium.IFrame(image_html, width=220, height=220)
         popup = folium.Popup(iframe, max_width=2650)
         folium.Marker(location=[row['LAT'], row['LON']],
-                      popup=popup,
+                      popup=popup,tooltip=f"ID: {row['id_campo']}",
                       icon=folium.Icon(color=icon_color)).add_to(m)
 
     with st.container():

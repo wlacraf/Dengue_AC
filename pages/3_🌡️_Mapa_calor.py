@@ -21,9 +21,11 @@ df['value'] = 1  # Adiciona uma coluna de valor constante ao DataFrame
 
 # Inicializando um mapa base
 #m = leafmap.Map()
-latitude_central = df['LAT'].mean()
-longitude_central = df['LON'].mean()
+latitude_central = -22.973356 #df['LAT'].mean()
+longitude_central = -42.025602 # df['LON'].mean()
 m=leafmap.Map(location=[latitude_central, longitude_central], zoom_start=16)
+
+#m = folium.Map(location=[ -22.973356,-42.025602], zoom_start=16)
 
 m.add_basemap("Stamen Toner")
 # Adicionando o mapa de calor ao mapa base
