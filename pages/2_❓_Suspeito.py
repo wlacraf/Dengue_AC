@@ -3,6 +3,7 @@ import pandas as pd
 from streamlit_folium import folium_static
 import folium
 import base64
+import folium.plugins
 
 # Função para carregar dados do CSV
 # Função para carregar dados do CSV e filtrar
@@ -24,6 +25,8 @@ st.write(f"{numero} pontos")
 if not df.empty:
     # Inicia o mapa
     m = folium.Map(location=[ -22.973356,-42.025602], zoom_start=16)
+    # Adicionando o plugin LocateControl para mostrar a localização atual
+    folium.plugins.LocateControl(KeepCurrentZoomLevel=True, drawMarker=True).add_to(m)
 
     # Adicionando um tileset padrão e alternativos
     folium.TileLayer('OpenStreetMap').add_to(m)
